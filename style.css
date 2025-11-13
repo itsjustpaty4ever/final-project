@@ -1,0 +1,10 @@
+
+.quiz-container {
+    background-color: rgb(255, 181, 194);
+    margin: 135px auto;
+    padding: 60px;
+    border-radius: 10px;
+}
+body{
+    background-color: rgb(236, 158, 171);
+}
