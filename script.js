@@ -12,8 +12,27 @@ let questions = [
          options : ["9" , "4" , "13","7"],
          correct: 3
     }
-]
+];
+
+//setting 0 as the score and the current question 
+let currentQuestion = 0;
+let score = 0;
 
 //next i will begin to take the information from inside the array questions and print it to the live screen
+
+//i used ai for the explanation and i changed the function name and did the coding myself
+function printQuestion(index){
+//setting the Ids so they have a variable
+     let question = document.getElementById("question");
+     let optionZero = document.getElementById("option-0");
+     let optionOne = document.getElementById("option-1");
+     let optionTwo = document.getElementById("option-2");
+     let optionThree = document.getElementById("option-3");
+
+     let radio = document.getElementById("answer");
+//getting the data from the array specifically the questions
+     question = 
+
+}
 
 
