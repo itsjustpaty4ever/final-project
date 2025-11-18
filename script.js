@@ -16,6 +16,11 @@ let questions = [
         question : "What planet is closest to the sun?",
         options : ["Mercury" , "Mars" , "Neptune" , "Pluto"],
         correct: 0  
+    },
+    {
+        question : "what is H2O commonly known as?" ,
+        options : ["Soda" , "Soap", "Dr.Pepper" , "Water"],
+        correct : 0
     }
 ];
 
@@ -43,9 +48,20 @@ function printQuestion(){
      question.innerText = data.question;
      console.log(question);
 
-     index += 1;
-
      //figure out how to print the answers to screen
+     optionZero.innerText = data.options[0];
+     console.log(optionZero);
+
+     optionOne.innerText = data.options[1];
+     console.log(optionOne);
+
+     optionTwo.innerText = data.options[2];
+     console.log(optionTwo);
+
+     optionThree.innerText = data.options[3];
+     console.log(optionThree);
+
+     index += 1;
 }
 
 //get the info from array into the variable
