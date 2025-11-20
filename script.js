@@ -19,8 +19,8 @@ let questions = [
     },
     {
         question : "what is H2O commonly known as?" ,
-        options : ["Soda" , "Soap", "Dr.Pepper" , "Water"],
-        correct : 0
+        options : ["Soda" , "Water", "Dr.Pepper" , "Soap"],
+        correct : 2
     }
 ];
 
@@ -40,28 +40,39 @@ function printQuestion(){
      let optionThree = document.getElementById("option-3");
 
      let radio = document.getElementById("answer");
-//getting the data from the array specifically the questions
-// (index is the value of whatever is inside the array)
-     let data = questions[index];
+     //getting the data from the array specifically the questions
+     // (index is the value of whatever is inside the array)
+     if(index < question.length){
+          let data = questions[index];
 
-//getting the information from inside the options
-     question.innerText = data.question;
-     console.log(question);
+          //getting the information from inside the options
+          question.innerText = data.question;
+          console.log(question);
 
-     //figure out how to print the answers to screen
-     optionZero.innerText = data.options[0];
-     console.log(optionZero);
+          //figure out how to print the answers to screen
+          optionZero.innerText = data.options[0];
+          console.log(optionZero);
 
-     optionOne.innerText = data.options[1];
-     console.log(optionOne);
+          optionOne.innerText = data.options[1];
+          console.log(optionOne);
 
-     optionTwo.innerText = data.options[2];
-     console.log(optionTwo);
+          optionTwo.innerText = data.options[2];
+          console.log(optionTwo);
 
-     optionThree.innerText = data.options[3];
-     console.log(optionThree);
+          optionThree.innerText = data.options[3];
+          console.log(optionThree);
+     }
 
-     index += 1;
 }
 
-//get the info from array into the variable
+function nextQuestion(){
+     if (index < questions.length){
+          printQuestion()
+     }
+}
+
+function stopQuiz(){
+     
+}
+
+printQuestion(currentQuestion);
