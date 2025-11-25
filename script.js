@@ -8,7 +8,7 @@ let questions = [
          correct: 1
     },
     {
-         question: "How many continets are there?",
+         question: "How many continents are there?",
          options : ["9" , "4" , "13","7"],
          correct: 3
     },
@@ -21,6 +21,11 @@ let questions = [
         question : "what is H2O commonly known as?" ,
         options : ["Soda" , "Water", "Dr.Pepper" , "Soap"],
         correct : 2
+    },
+    {
+       question : "What is the main ingrediant of guacamole?",
+       options : ["Apple" , "Avocado" , "Kiwi" , "Tomatos"],
+       correct : 1
     }
 ];
 
@@ -42,8 +47,8 @@ function printQuestion(){
      let radio = document.getElementById("answer");
      //getting the data from the array specifically the questions
      // (index is the value of whatever is inside the array)
-     if(index < question.length){
-          let data = questions[index];
+     if(currentQuestion < questions.length){
+          let data = questions[currentQuestion];
 
           //getting the information from inside the options
           question.innerText = data.question;
@@ -65,14 +70,28 @@ function printQuestion(){
 
 }
 
+function resetAnswers(){
+     let radioZero = document.getElementById("radio-0");
+     radioZero.checked = false;
+
+     let radioOne = document.getElementById("radio-1");
+     radioOne.checked = false;
+
+     let radioTwo = document.getElementById("radio-2");
+     radioTwo.checked = false;
+
+     let radioThree = document.getElementById("radio-3");
+     radioThree.checked = false;
+}
+
 function nextQuestion(){
-     if (index < questions.length){
-          printQuestion()
+     resetAnswers()
+     //this makes sure that the current value of questions matchs with the arrays index and stops player from going further
+     currentQuestion = currentQuestion + 1;
+     if (currentQuestion < questions.length){
+          printQuestion();
      }
 }
 
-function stopQuiz(){
-     
-}
 
 printQuestion(currentQuestion);
