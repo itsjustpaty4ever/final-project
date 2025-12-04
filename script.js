@@ -1,5 +1,6 @@
+// Simple Quiz script
+// Flow: show a question -> user picks an option -> click Next -> score is updated -> next question shown
 console.log("code running");
-let index = 0;
 //creating an array of questions(ai helped with the layout and i edited the questions)
 let questions = [
     {
@@ -18,7 +19,7 @@ let questions = [
         correct: 0  
     },
     {
-        question : "what is H2O commonly known as?" ,
+        question : "What is H2O commonly known as?" ,
         options : ["Soda" , "Water", "Dr.Pepper" , "Soap"],
         correct : 2
     },
@@ -26,6 +27,31 @@ let questions = [
        question : "What is the main ingrediant of guacamole?",
        options : ["Apple" , "Avocado" , "Kiwi" , "Tomatos"],
        correct : 1
+    },
+    {
+       question : "How may sides does a pentagon have?",
+       options : ["3" , "8", "10", "5"],
+       correct : 3
+    },
+    {
+       question : "What is the fastest animal?",
+       options : ["Sloth","Pibble" ,"Cheetah" , "Otter"],
+       correct : 2
+    },
+    {
+       question : "What insect produces honey?",
+       options : ["Bee" , "Ant","Butterfly","Ladybug"],
+       correct : 0
+    },
+    {
+       question : "What color do you get from mixing red and blue?",
+       options : ["Blue", "Orange","Purple","Yellow"],
+       correct : 2
+    },
+    {
+       question : "Who lives in a pineapple under the sea?",
+       options : ["Carly", "Mr.Adams","Elsa" ,"Spongebob" ],
+       correct : 3
     }
 ];
 
@@ -37,35 +63,25 @@ let score = 0;
 
 //i used ai for the explanation and i changed the function name and did the coding myself
 function printQuestion(){
-//setting the Ids so they have a variable
-     let question = document.getElementById("question");
-     let optionZero = document.getElementById("option-0");
-     let optionOne = document.getElementById("option-1");
-     let optionTwo = document.getElementById("option-2");
-     let optionThree = document.getElementById("option-3");
+     // Get the HTML elements where we will put text
+     let questionEl = document.getElementById("question");
+     let option0 = document.getElementById("option-0");
+     let option1 = document.getElementById("option-1");
+     let option2 = document.getElementById("option-2");
+     let option3 = document.getElementById("option-3");
 
-     let radio = document.getElementById("answer");
-     //getting the data from the array specifically the questions
-     // (index is the value of whatever is inside the array)
-     if(currentQuestion < questions.length){
+     // This function only shows the question and options on the page.
+     if (currentQuestion < questions.length) {
           let data = questions[currentQuestion];
 
-          //getting the information from inside the options
-          question.innerText = data.question;
-          console.log(question);
+          // Put the question text into the page
+          questionEl.innerText = data.question;
 
-          //figure out how to print the answers to screen
-          optionZero.innerText = data.options[0];
-          console.log(optionZero);
-
-          optionOne.innerText = data.options[1];
-          console.log(optionOne);
-
-          optionTwo.innerText = data.options[2];
-          console.log(optionTwo);
-
-          optionThree.innerText = data.options[3];
-          console.log(optionThree);
+          // Put each option text into the page
+          option0.innerText = data.options[0];
+          option1.innerText = data.options[1];
+          option2.innerText = data.options[2];
+          option3.innerText = data.options[3];
      }
 
 }
@@ -85,13 +101,53 @@ function resetAnswers(){
 }
 
 function nextQuestion(){
-     resetAnswers()
-     //this makes sure that the current value of questions matchs with the arrays index and stops player from going further
-     currentQuestion = currentQuestion + 1;
-     if (currentQuestion < questions.length){
-          printQuestion();
+     // Find which answer the user clicked
+     let radios = document.getElementsByName("answer");
+     let userAnswer = null;
+     for (let i = 0; i < radios.length; i = i + 1) {
+          if (radios[i].checked) {
+               userAnswer = Number(radios[i].value);
+               break; // stop the loop when checked radio is found
+          }
      }
+
+         // checking if correct answer matches the array
+         if (userAnswer !== null && currentQuestion < questions.length) {
+              let correctIndex = questions[currentQuestion].correct;
+              if (userAnswer === correctIndex) {
+                   // add one point for a correct answer
+                   score = score + 1;
+                   let scoreElement = document.getElementById("score-display");
+                   if (scoreElement) {
+                        scoreElement.innerText = score; // show updated score on the page
+                   }
+              }
+         }
+
+     
+     currentQuestion = currentQuestion + 1;
+     if (currentQuestion < questions.length) {
+          printQuestion();
+          // clear previously selected radios so the next question starts with none checked
+          resetAnswers();
+     } else {
+          // no more questions, reveal results area if present
+          let results = document.getElementById('results');
+         if (results) {
+               results.classList.remove('hidden');
+          }
+     }
+
 }
 
+let restartButton = document.getElementById("restart-btn");
+function restartQuiz(){
+     // simplest restart: reload the page
+     window.location.reload();
+}
 
+// Only add the event listener if the button exists in the page
+if (restartButton) {
+     restartButton.addEventListener("click", restartQuiz);
+}
 printQuestion(currentQuestion);
