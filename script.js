@@ -21,7 +21,7 @@ let questions = [
     {
         question : "What is H2O commonly known as?" ,
         options : ["Soda" , "Water", "Dr.Pepper" , "Soap"],
-        correct : 2
+        correct : 1
     },
     {
        question : "What is the main ingrediant of guacamole?",
