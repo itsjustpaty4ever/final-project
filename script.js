@@ -64,7 +64,7 @@ let score = 0;
 //i used ai for the explanation and i changed the function name and did the coding myself
 function printQuestion(){
      // Get the HTML elements where we will put text
-     let questionEl = document.getElementById("question");
+     let question = document.getElementById("question");
      let option0 = document.getElementById("option-0");
      let option1 = document.getElementById("option-1");
      let option2 = document.getElementById("option-2");
@@ -75,7 +75,7 @@ function printQuestion(){
           let data = questions[currentQuestion];
 
           // Put the question text into the page
-          questionEl.innerText = data.question;
+          question.innerText = data.question;
 
           // Put each option text into the page
           option0.innerText = data.options[0];
@@ -131,23 +131,33 @@ function nextQuestion(){
           // clear previously selected radios so the next question starts with none checked
           resetAnswers();
      } else {
-          // no more questions, reveal results area if present
-          let results = document.getElementById('results');
-         if (results) {
-               results.classList.remove('hidden');
-          }
+          document.getElementById("quiz").classList.add("hidden");
+          document.getElementById("results").classList.remove("hidden");
+          
+          // Update the final score display
+          document.getElementById("score-display").innerText = score;
+          document.getElementById("total").innerText = questions.length;
      }
 
 }
 
 let restartButton = document.getElementById("restart-btn");
-function restartQuiz(){
-     // simplest restart: reload the page
-     window.location.reload();
-}
+//function restartQuiz(){
+     // reload the page
+    // window.location.reload();
+//}
+
+document.addEventListener("click",function(e) {
+     if(e.target.id === "restart-btn"){
+          console.log("button clicked attemp 1" + Date.now());
+          console.log("about to reload page");
+          window.location.reload();
+
+     }
+});
 
 // Only add the event listener if the button exists in the page
-if (restartButton) {
-     restartButton.addEventListener("click", restartQuiz);
-}
+//if (restartButton) {
+     //restartButton.addEventListener("click", restartQuiz);
+//}
 printQuestion(currentQuestion);

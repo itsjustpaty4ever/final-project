@@ -3,8 +3,145 @@
     background-color: rgb(255, 181, 194);
     margin: 135px auto;
     padding: 60px;
-    border-radius: 10px;
+    border-radius: 50px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
 }
 body{
     background-color: rgb(236, 158, 171);
+    font-family: Arial,sans-serif;
+    margin: 0;
+    padding: 20px;
 }
+
+#next-btn{
+    margin:15px;
+    color:rgb(186, 87, 107);
+    background-color: rgb(223, 141, 153);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#next-btn:hover {
+    background-color: rgb(210, 120, 135);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(227, 76, 106, 0.959);
+}
+
+#restart-btn{
+    color:rgba(218, 117, 137, 0.836);
+    background-color: rgb(223, 141, 153);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#restart-btn:hover {
+    background-color: rgb(210, 120, 135);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 128, 149, 0.948);
+}
+
+h1 , h2{
+    color:rgb(186, 87, 107);
+}
+
+h1{
+    font-size: 40px;
+    margin:60px;
+    font-weight:bold;  
+}
+
+h2{
+    font-size: 24px;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+#option-0 , #option-1 , #option-2 , #option-3{
+    color:rgb(186, 87, 107);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 181, 194);
+    border: 2px solid rgb(255, 181, 194);
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.options label:hover {
+    background-color: rgb(255, 200, 210);
+    border-color: rgb(186, 87, 107);
+    transform: translateY(-2px);
+}
+
+.question-card {
+    background-color: rgb(255, 161, 175);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 2px solid rgb(255, 181, 194);
+}
+
+#results {
+    background-color: rgb(249, 148, 163);
+    border-radius: 20px;
+    padding: 30px;
+    border: 2px solid rgb(248, 146, 161);
+}
+
+#results p {
+    font-size: 24px;
+    color: rgb(186, 87, 107);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#score-display {
+    color: rgb(150, 60, 80);
+    font-size: 28px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .quiz-container {
+        margin: 20px auto;
+        padding: 30px;
+    }
+    
+    h1 {
+        font-size: 30px;
+        margin: 30px;
+    }
+    
+    .options label {
+        padding: 12px;
+    }
