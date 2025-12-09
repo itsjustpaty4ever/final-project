@@ -58,7 +58,7 @@ let questions = [
 //setting 0 as the score and the current question 
 let currentQuestion = 0;
 let score = 0;
-
+let quizResults = [];
 //next i will begin to take the information from inside the array questions and print it to the live screen
 
 //i used ai for the explanation and i changed the function name and did the coding myself
@@ -113,18 +113,16 @@ function nextQuestion(){
 
          // checking if correct answer matches the array
          if (userAnswer !== null && currentQuestion < questions.length) {
-              let correctIndex = questions[currentQuestion].correct;
-              if (userAnswer === correctIndex) {
-                   // add one point for a correct answer
-                   score = score + 1;
-                   let scoreElement = document.getElementById("score-display");
-                   if (scoreElement) {
-                        scoreElement.innerText = score; // show updated score on the page
+               let wasCorrect = storeQuestionResult(currentQuestion, userAnswer);
+               if (wasCorrect) {
+                    score = score + 1;
+                    let scoreElement = document.getElementById("score-display");
+                    if (scoreElement) {
+                         scoreElement.innerText = score;
                    }
               }
          }
 
-     
      currentQuestion = currentQuestion + 1;
      if (currentQuestion < questions.length) {
           printQuestion();
@@ -137,6 +135,8 @@ function nextQuestion(){
           // Update the final score display
           document.getElementById("score-display").innerText = score;
           document.getElementById("total").innerText = questions.length;
+
+          displaySummary()
      }
 
 }
@@ -161,3 +161,46 @@ document.addEventListener("click",function(e) {
      //restartButton.addEventListener("click", restartQuiz);
 //}
 printQuestion(currentQuestion);
+
+
+//AI helped create this 
+// This function will handle storing each question's result
+function storeQuestionResult(questionIndex, userAnswer) {
+    // Parameter explanations:
+    // questionIndex: which question number we're on
+    // userAnswer: what the user selected (0, 1, 2, or 3)
+    
+    let correctIndex = questions[questionIndex].correct;
+    let isCorrect = userAnswer === correctIndex;
+    
+    // Store all the info we need for the summary
+    quizResults.push({
+        questionText: questions[questionIndex].question,
+        userAnswer: userAnswer,
+        correctAnswer: correctIndex,
+        userAnswerText: questions[questionIndex].options[userAnswer],
+        correctAnswerText: questions[questionIndex].options[correctIndex],
+        isCorrect: isCorrect
+    });
+    
+    return isCorrect; // Return true/false so we know if they got it right
+}
+
+// Super simple version - just show the questions they missed
+function displaySummary() {
+    let summarySection = document.getElementById("summary-section");
+    let htmlText = "<h3>Questions You Missed:</h3>";
+    
+    // Check each result
+    for (let i = 0; i < quizResults.length; i++) {
+        if (quizResults[i].isCorrect === false) {
+            htmlText = htmlText + "<p>Question: " + quizResults[i].questionText + "</p>";
+            htmlText = htmlText + "<p>Correct Answer: " + quizResults[i].correctAnswerText + "</p>";
+            htmlText = htmlText + "<br>";
+        }else{
+          htmlText = htmlText + "Full Marks!";
+        }
+    }
+    
+    summarySection.innerHTML = htmlText;
+}
