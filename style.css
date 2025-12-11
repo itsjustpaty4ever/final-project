@@ -167,3 +167,15 @@ h2{
     color: rgb(186, 87, 107);
     margin: 20px 0 15px 0;
 }
+
+.perfect-score {
+    color: #c65b86;
+    text-align: center;
+    padding: 35px;
+    border-radius: 25px;
+    border: 3px dashed #ea7e90;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3);
+    
+}

@@ -166,10 +166,7 @@ printQuestion(currentQuestion);
 //AI helped create this 
 // This function will handle storing each question's result
 function storeQuestionResult(questionIndex, userAnswer) {
-    // Parameter explanations:
-    // questionIndex: which question number we're on
-    // userAnswer: what the user selected (0, 1, 2, or 3)
-    
+   
     let correctIndex = questions[questionIndex].correct;
     let isCorrect = userAnswer === correctIndex;
     
@@ -186,21 +183,23 @@ function storeQuestionResult(questionIndex, userAnswer) {
     return isCorrect; // Return true/false so we know if they got it right
 }
 
-// Super simple version - just show the questions they missed
 function displaySummary() {
     let summarySection = document.getElementById("summary-section");
-    let htmlText = "<h3>Questions You Missed:</h3>";
-    
-    // Check each result
-    for (let i = 0; i < quizResults.length; i++) {
-        if (quizResults[i].isCorrect === false) {
-            htmlText = htmlText + "<p>Question: " + quizResults[i].questionText + "</p>";
-            htmlText = htmlText + "<p>Correct Answer: " + quizResults[i].correctAnswerText + "</p>";
-            htmlText = htmlText + "<br>";
-        }else{
-          htmlText = htmlText + "Full Marks!";
-        }
-    }
-    
-    summarySection.innerHTML = htmlText;
-}
+   
+    if (score === questions.length){
+     summarySection.innerHTML = "<div class='perfect-score'>🎉 Perfect Score! You're amazing! 🎉</div>";
+    }else{
+
+     let htmlText = "<h3>Questions You Missed:</h3>";
+          for (let i = 0; i < quizResults.length; i++) {
+               if (quizResults[i].isCorrect === false) {
+                    htmlText = htmlText + "<p>Question: " + quizResults[i].questionText + "</p>";
+                    htmlText = htmlText + "<p>Correct Answer: " + quizResults[i].correctAnswerText + "</p>";
+                    htmlText = htmlText + "<br>";
+              }
+          }
+   
+    summarySection.innerHTML = htmlText;    
+    } 
+} 
+
